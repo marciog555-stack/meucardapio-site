@@ -20,7 +20,7 @@ export function Segmentos() {
           rel="noopener noreferrer"
           className="border-creme/10 bg-carvao-claro group mt-10 grid overflow-hidden rounded-2xl border sm:grid-cols-2"
         >
-          <div className="aspect-square overflow-hidden sm:aspect-auto">
+          <div className="aspect-square overflow-hidden">
             <img
               src={SEGMENTO_DESTAQUE.foto}
               alt={`Tela do site — ${SEGMENTO_DESTAQUE.nome}`}
