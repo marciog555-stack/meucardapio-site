@@ -52,13 +52,13 @@ export function GraficoEconomia() {
 
       ScrollTrigger.create({
         trigger: svgRef.current,
-        start: 'top 85%',
+        start: 'top 92%',
         once: true,
         onEnter: () => {
           const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
           barrasRef.current.forEach((barra, i) => {
-            tl.to(barra, { scaleY: 1, duration: 0.55 }, i * 0.07)
-            tl.to(rotulosRef.current[i], { opacity: 1, y: 0, duration: 0.3 }, i * 0.07 + 0.3)
+            tl.to(barra, { scaleY: 1, duration: 0.4 }, i * 0.04)
+            tl.to(rotulosRef.current[i], { opacity: 1, y: 0, duration: 0.25 }, i * 0.04 + 0.22)
           })
         },
       })
