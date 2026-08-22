@@ -56,7 +56,7 @@ export function ComoFunciona() {
             className="border-creme/10 mt-8 aspect-9/16 max-h-[520px] overflow-hidden rounded-3xl border will-change-transform"
           >
             <img
-              src="/img/demo-macarrao.webp"
+              src="/img/demo-brasa.webp"
               alt="Tela do painel do MeuCardápio"
               className="h-full w-full object-cover object-top"
               loading="lazy"
