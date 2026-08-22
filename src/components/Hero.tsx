@@ -45,7 +45,7 @@ export function Hero() {
       />
       <div className="from-carvao via-carvao/80 absolute inset-0 -z-10 bg-gradient-to-t to-transparent" />
 
-      <div className="relative z-10 w-full px-6 pb-16 sm:px-10 sm:pb-24 lg:px-20">
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-16 sm:px-10 sm:pb-24 lg:px-20">
         <p
           data-hero-eyebrow
           className="text-creme/70 text-xs font-semibold tracking-[0.35em] uppercase sm:text-sm"
