@@ -41,7 +41,7 @@ export function Hero() {
     <section ref={secaoRef} className="relative flex min-h-svh items-end overflow-hidden">
       <div
         ref={bgRef}
-        className="hero-bg absolute inset-0 -z-20 bg-cover bg-center will-change-transform"
+        className="hero-bg absolute inset-0 -z-20 bg-cover bg-center"
       />
       <div className="from-carvao via-carvao/80 absolute inset-0 -z-10 bg-gradient-to-t to-transparent" />
 

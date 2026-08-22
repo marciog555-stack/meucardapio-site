@@ -53,7 +53,7 @@ export function ComoFunciona() {
           </h2>
           <div
             ref={fotoRef}
-            className="border-creme/10 mt-8 aspect-9/16 max-h-[520px] overflow-hidden rounded-3xl border will-change-transform"
+            className="border-creme/10 mt-8 aspect-9/16 max-h-[520px] overflow-hidden rounded-3xl border"
           >
             <img
               src="/img/demo-brasa.webp"
