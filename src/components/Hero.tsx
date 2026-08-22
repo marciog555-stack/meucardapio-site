@@ -65,16 +65,20 @@ export function Hero() {
           Um site profissional só seu, pedido caindo direto no seu WhatsApp —
           sem pagar 30% de comissão por pedido pro aplicativo.
         </p>
-        <a
-          data-hero-cta
-          href={`https://wa.me/${WHATSAPP}?text=${MENSAGEM}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-burger text-creme mt-8 inline-flex min-h-14 items-center gap-3 rounded-full px-8 text-base font-bold tracking-wide uppercase transition-transform active:scale-95"
-          data-magnetico
-        >
-          Quero meu site
-        </a>
+        <div data-hero-cta>
+          <a
+            href={`https://wa.me/${WHATSAPP}?text=${MENSAGEM}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-burger text-creme mt-8 inline-flex min-h-14 items-center gap-3 rounded-full px-8 text-base font-bold tracking-wide uppercase transition-transform active:scale-95"
+            data-magnetico
+          >
+            Quero meu site
+          </a>
+          <p className="text-creme/50 mt-3 text-sm">
+            R$100 pra montar + R$50/mês depois. Sem contrato, sem fidelidade.
+          </p>
+        </div>
       </div>
     </section>
   )

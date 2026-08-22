@@ -5,6 +5,7 @@ import { Hero } from './components/Hero'
 import { Problema } from './components/Problema'
 import { Segmentos } from './components/Segmentos'
 import { ComoFunciona } from './components/ComoFunciona'
+import { Confianca } from './components/Confianca'
 import { Rodape } from './components/Rodape'
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Problema />
         <Segmentos />
         <ComoFunciona />
+        <Confianca />
       </main>
       <Rodape />
     </>

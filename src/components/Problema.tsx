@@ -1,4 +1,4 @@
-import { PROBLEMAS } from '../data/problemas'
+import { GraficoEconomia } from './GraficoEconomia'
 import { Reveal } from './Reveal'
 
 export function Problema() {
@@ -11,23 +11,17 @@ export function Problema() {
         <h2 className="font-display text-creme mt-3 max-w-2xl text-4xl uppercase sm:text-5xl">
           Aplicativo de entrega não trabalha pra você
         </h2>
+        <p className="text-creme/60 mt-4 max-w-xl text-base sm:text-lg">
+          Até 30% de comissão por pedido, cliente que fica sendo do app — não seu —, e sua marca
+          perdida no meio de mil outras. No fim do mês, é você quem paga essa conta.
+        </p>
       </Reveal>
 
-      <ul className="border-creme/10 mt-14 grid gap-px overflow-hidden rounded-2xl border sm:grid-cols-2">
-        {PROBLEMAS.map((problema, i) => (
-          <Reveal as="li" key={problema.titulo} delayMs={Math.min(i, 8) * 60}>
-            <div className="bg-carvao-claro flex h-full flex-col gap-2 p-6 sm:p-8">
-              <span className="text-burger font-mono text-sm">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <h3 className="font-display text-creme text-xl uppercase sm:text-2xl">
-                {problema.titulo}
-              </h3>
-              <p className="text-creme/60 text-sm sm:text-base">{problema.descricao}</p>
-            </div>
-          </Reveal>
-        ))}
-      </ul>
+      <Reveal delayMs={100}>
+        <div className="border-creme/10 bg-carvao-claro mt-14 rounded-2xl border p-6 sm:p-10">
+          <GraficoEconomia />
+        </div>
+      </Reveal>
     </section>
   )
 }

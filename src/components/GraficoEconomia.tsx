@@ -1,0 +1,168 @@
+import { COMISSAO_APP, FAIXAS_PEDIDOS, PRECO_MENSAL } from '../data/economia'
+import { formatarPreco } from '../lib/formato'
+
+const COR_APP = '#e4402c'
+const COR_MEUCARDAPIO = '#4a9b5e'
+
+const LARGURA_BARRA = 22
+const TOPO_AREA = 20
+const BASE = 260
+const MARGEM_ESQUERDA = 64
+const MARGEM_DIREITA = 20
+const LARGURA_TOTAL = 640
+const DOMINIO_MAX = 2500
+const TICKS = [0, 1000, 2000]
+
+function formatarTick(valor: number) {
+  return valor === 0 ? 'R$0' : `R$${valor.toLocaleString('pt-BR')}`
+}
+
+function y(valor: number) {
+  return BASE - (valor / DOMINIO_MAX) * (BASE - TOPO_AREA)
+}
+
+/** Caminho de uma barra com topo arredondado e base reta (spec do
+ * dataviz: "4px rounded data-end, square at the baseline"). */
+function caminhoBarra(x: number, valor: number) {
+  const topo = y(valor)
+  const r = Math.min(4, LARGURA_BARRA / 2, BASE - topo)
+  if (BASE - topo <= 0) return ''
+  return `M${x},${BASE} L${x},${topo + r} Q${x},${topo} ${x + r},${topo} L${x + LARGURA_BARRA - r},${topo} Q${x + LARGURA_BARRA},${topo} ${x + LARGURA_BARRA},${topo + r} L${x + LARGURA_BARRA},${BASE} Z`
+}
+
+export function GraficoEconomia() {
+  const larguraGrupo = (LARGURA_TOTAL - MARGEM_ESQUERDA - MARGEM_DIREITA) / FAIXAS_PEDIDOS.length
+  const faixaCem = FAIXAS_PEDIDOS.find((f) => f.pedidos === 100)
+  const economiaCem = faixaCem ? faixaCem.custoApp - faixaCem.custoMeuCardapio : 0
+
+  return (
+    <div>
+      <ul className="mb-4 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+        <li className="flex items-center gap-2">
+          <span
+            className="inline-block h-2.5 w-2.5 rounded-full"
+            style={{ backgroundColor: COR_APP }}
+            aria-hidden="true"
+          />
+          <span className="text-creme/70">Comissão do app ({COMISSAO_APP * 100}%)</span>
+        </li>
+        <li className="flex items-center gap-2">
+          <span
+            className="inline-block h-2.5 w-2.5 rounded-full"
+            style={{ backgroundColor: COR_MEUCARDAPIO }}
+            aria-hidden="true"
+          />
+          <span className="text-creme/70">MeuCardápio ({formatarPreco(PRECO_MENSAL)}/mês)</span>
+        </li>
+      </ul>
+
+      <svg viewBox="0 0 640 300" className="w-full" role="img" aria-labelledby="grafico-economia-titulo">
+        <title id="grafico-economia-titulo">
+          Comparação de custo mensal: comissão de app de delivery vs. MeuCardápio, por faixa de
+          pedidos
+        </title>
+
+        {TICKS.map((tick) => (
+          <g key={tick}>
+            <line
+              x1={MARGEM_ESQUERDA}
+              x2={LARGURA_TOTAL - MARGEM_DIREITA}
+              y1={y(tick)}
+              y2={y(tick)}
+              stroke="var(--color-creme)"
+              strokeOpacity={0.1}
+              strokeWidth={1}
+            />
+            <text
+              x={MARGEM_ESQUERDA - 8}
+              y={y(tick) + 4}
+              textAnchor="end"
+              className="fill-creme/40 text-[11px]"
+            >
+              {formatarTick(tick)}
+            </text>
+          </g>
+        ))}
+
+        {FAIXAS_PEDIDOS.map((faixa, i) => {
+          const centroGrupo = MARGEM_ESQUERDA + (i + 0.5) * larguraGrupo
+          const xApp = centroGrupo - LARGURA_BARRA - 5
+          const xMeu = centroGrupo + 5
+
+          return (
+            <g key={faixa.pedidos}>
+              <path d={caminhoBarra(xApp, faixa.custoApp)} fill={COR_APP} />
+              <text
+                x={xApp + LARGURA_BARRA / 2}
+                y={y(faixa.custoApp) - 8}
+                textAnchor="middle"
+                className="fill-creme text-[12px] font-semibold"
+              >
+                {formatarPreco(faixa.custoApp)}
+              </text>
+
+              <path d={caminhoBarra(xMeu, faixa.custoMeuCardapio)} fill={COR_MEUCARDAPIO} />
+              <text
+                x={xMeu + LARGURA_BARRA / 2}
+                y={y(faixa.custoMeuCardapio) - 8}
+                textAnchor="middle"
+                className="fill-creme text-[12px] font-semibold"
+              >
+                {formatarPreco(faixa.custoMeuCardapio)}
+              </text>
+
+              <text
+                x={centroGrupo}
+                y={BASE + 22}
+                textAnchor="middle"
+                className="fill-creme/60 text-[12px]"
+              >
+                {faixa.pedidos} pedidos/mês
+              </text>
+            </g>
+          )
+        })}
+
+        <line
+          x1={MARGEM_ESQUERDA}
+          x2={LARGURA_TOTAL - MARGEM_DIREITA}
+          y1={BASE}
+          y2={BASE}
+          stroke="var(--color-creme)"
+          strokeOpacity={0.2}
+          strokeWidth={1}
+        />
+      </svg>
+
+      <table className="sr-only">
+        <caption>Custo mensal: comissão do app vs. MeuCardápio, por faixa de pedidos</caption>
+        <thead>
+          <tr>
+            <th>Pedidos por mês</th>
+            <th>Comissão do app</th>
+            <th>MeuCardápio</th>
+          </tr>
+        </thead>
+        <tbody>
+          {FAIXAS_PEDIDOS.map((faixa) => (
+            <tr key={faixa.pedidos}>
+              <td>{faixa.pedidos}</td>
+              <td>{formatarPreco(faixa.custoApp)}</td>
+              <td>{formatarPreco(faixa.custoMeuCardapio)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <p className="text-creme mt-4 text-base sm:text-lg">
+        Com 100 pedidos por mês, isso é{' '}
+        <span className="text-burger font-semibold">{formatarPreco(economiaCem)} a mais</span> no
+        seu bolso, todo mês.
+      </p>
+      <p className="text-creme/40 mt-2 text-xs">
+        Estimativa com ticket médio de R$45 e comissão de 25% — os números reais do seu restaurante
+        podem variar.
+      </p>
+    </div>
+  )
+}

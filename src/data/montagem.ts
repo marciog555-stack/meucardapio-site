@@ -13,15 +13,7 @@ export const PASSOS_FUNCIONAMENTO: PassoFuncionamento[] = [
     descricao: 'Sem intermediário, sem taxa por pedido, sem esperar aprovação de app nenhum.',
   },
   {
-    titulo: 'Cliente monta o próprio prato',
-    descricao: 'Massa, molho, carne, guarnição — configurável do jeito que seu cardápio precisar.',
-  },
-  {
     titulo: 'Fidelidade automática',
     descricao: 'Pontos somam sozinhos a cada pedido. O cliente consulta só com o WhatsApp — sem senha, sem cartão.',
-  },
-  {
-    titulo: 'Painel completo',
-    descricao: 'Pedidos do dia, faturamento em PDF, promoções, bairros de entrega — tudo num lugar só.',
   },
 ]
