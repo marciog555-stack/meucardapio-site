@@ -17,6 +17,8 @@
 
 html {
   scroll-behavior: auto;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -26,6 +28,8 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
 }
 
 ::selection {
