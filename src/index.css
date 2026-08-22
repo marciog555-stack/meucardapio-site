@@ -37,6 +37,14 @@ body {
   color: var(--color-creme);
 }
 
+/* Anel de foco na cor da marca em vez do azul padrão do navegador — só
+ * aparece na navegação por teclado (:focus-visible), nunca em clique de
+ * mouse/toque. */
+:focus-visible {
+  outline: 2px solid var(--color-burger);
+  outline-offset: 2px;
+}
+
 /* Fundo do Hero: versão leve no mobile, versão maior a partir do tablet. */
 .hero-bg {
   background-image: url('/img/hero-bg-mobile.webp');

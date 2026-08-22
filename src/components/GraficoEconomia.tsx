@@ -3,8 +3,8 @@ import { COMISSAO_APP, FAIXAS_PEDIDOS, PRECO_MENSAL } from '../data/economia'
 import { gsap, reduzMovimento, ScrollTrigger } from '../lib/gsap'
 import { formatarPreco } from '../lib/formato'
 
-const COR_APP = '#e4402c'
-const COR_MEUCARDAPIO = '#4a9b5e'
+const COR_APP = 'var(--color-burger)'
+const COR_MEUCARDAPIO = 'var(--color-marmita)'
 
 const LARGURA_BARRA = 22
 const TOPO_AREA = 20
@@ -115,7 +115,7 @@ export function GraficoEconomia() {
               x={MARGEM_ESQUERDA - 8}
               y={y(tick) + 4}
               textAnchor="end"
-              className="fill-creme/40 text-[11px]"
+              className="fill-creme/60 text-[11px]"
             >
               {formatarTick(tick)}
             </text>
@@ -215,7 +215,7 @@ export function GraficoEconomia() {
         <span className="text-burger font-semibold">{formatarPreco(economiaCem)} a mais</span> no
         seu bolso, todo mês.
       </p>
-      <p className="text-creme/40 mt-2 text-xs">
+      <p className="text-creme/60 mt-2 text-xs">
         Estimativa com ticket médio de R$45 e comissão de 25% — os números reais do seu restaurante
         podem variar.
       </p>
