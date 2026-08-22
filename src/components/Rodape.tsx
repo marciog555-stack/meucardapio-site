@@ -34,6 +34,14 @@ export function Rodape() {
         <a href="/privacidade" className="hover:text-creme underline">
           Política de Privacidade
         </a>
+        <a
+          href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Oi! Vi o site feito pela Gomes Tech e quero saber mais.')}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-creme underline"
+        >
+          Desenvolvido por Gomes Tech
+        </a>
       </div>
     </footer>
   )
