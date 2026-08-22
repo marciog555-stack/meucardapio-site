@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Anton', 'Arial Narrow', sans-serif;
+  --font-sans: 'Manrope', system-ui, sans-serif;
+
+  --color-carvao: #0a0908;
+  --color-carvao-claro: #17140f;
+  --color-creme: #f4ede1;
+  --color-fumaca: #a89d8e;
+
+  --color-burger: #e4402c;
+  --color-macarrao: #e0a72e;
+  --color-marmita: #4a9b5e;
+  --color-acai: #8b4fd1;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  margin: 0;
+  background: var(--color-carvao);
+  color: var(--color-creme);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-burger);
+  color: var(--color-creme);
+}
+
+/* Fundo do Hero: versão leve no mobile, versão maior a partir do tablet. */
+.hero-bg {
+  background-image: url('/img/hero-bg-mobile.webp');
+  background-position: center 20%;
+}
+@media (min-width: 768px) {
+  .hero-bg {
+    background-image: url('/img/hero-bg.webp');
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
