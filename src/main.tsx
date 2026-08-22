@@ -1,11 +1,19 @@
-import { StrictMode } from 'react'
+import { StrictMode, Suspense, lazy } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.tsx'
-import { PoliticaPrivacidade } from './pages/PoliticaPrivacidade.tsx'
 
 const ehPrivacidade = window.location.pathname.startsWith('/privacidade')
 
+// Cada rota carrega só o que usa: a política de privacidade não depende de
+// GSAP/Lenis/ScrollTrigger (a landing inteira depende), então dividir os
+// dois bundles evita que quem cai em /privacidade baixe esse peso à toa.
+const App = lazy(() => import('./App.tsx'))
+const PoliticaPrivacidade = lazy(() =>
+  import('./pages/PoliticaPrivacidade.tsx').then((m) => ({ default: m.PoliticaPrivacidade })),
+)
+
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>{ehPrivacidade ? <PoliticaPrivacidade /> : <App />}</StrictMode>,
+  <StrictMode>
+    <Suspense fallback={null}>{ehPrivacidade ? <PoliticaPrivacidade /> : <App />}</Suspense>
+  </StrictMode>,
 )
