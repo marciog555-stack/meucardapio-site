@@ -10,14 +10,18 @@ export function useLenis() {
     if (reduzMovimento()) return
 
     const lenis = new Lenis({
-      duration: 1.1,
+      duration: 0.7,
       easing: (t) => Math.min(1, 1.001 - 2 ** (-10 * t)),
     })
 
     lenis.on('scroll', ScrollTrigger.update)
 
     function raf(time: number) {
-      lenis.raf(time)
+      // gsap.ticker entrega o tempo em segundos; lenis.raf espera
+      // milissegundos (igual o requestAnimationFrame nativo) — sem esse
+      // *1000, o Lenis acha que quase não passou tempo entre um quadro e
+      // outro, e a rolagem quase trava.
+      lenis.raf(time * 1000)
     }
     gsap.ticker.add(raf)
     gsap.ticker.lagSmoothing(0)
