@@ -23,7 +23,26 @@ html {
 
 body {
   margin: 0;
-  background: var(--color-carvao);
+  background-color: var(--color-carvao);
+  /* Textura de fundo sutil e parada (sem animação): um brilho suave nas
+   * cores da marca + um grão bem fraco, pra página não ficar "chapada"
+   * nos respiros entre seção. Rola junto com a página (não fixa na tela)
+   * de propósito — background-attachment: fixed trava a rolagem em
+   * celular mais simples. */
+  background-image:
+    radial-gradient(
+      ellipse 900px 700px at 10% -10%,
+      color-mix(in srgb, var(--color-burger) 12%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 800px 800px at 110% 45%,
+      color-mix(in srgb, var(--color-burger) 7%, transparent),
+      transparent 65%
+    ),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  background-repeat: no-repeat, no-repeat, repeat;
+  background-size: auto, auto, 180px 180px;
   color: var(--color-creme);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
