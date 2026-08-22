@@ -1,4 +1,6 @@
+import { useEffect, useRef } from 'react'
 import { COMISSAO_APP, FAIXAS_PEDIDOS, PRECO_MENSAL } from '../data/economia'
+import { gsap, reduzMovimento, ScrollTrigger } from '../lib/gsap'
 import { formatarPreco } from '../lib/formato'
 
 const COR_APP = '#e4402c'
@@ -31,9 +33,39 @@ function caminhoBarra(x: number, valor: number) {
 }
 
 export function GraficoEconomia() {
+  const svgRef = useRef<SVGSVGElement>(null)
+  const barrasRef = useRef<(SVGPathElement | null)[]>([])
+  const rotulosRef = useRef<(SVGTextElement | null)[]>([])
+
   const larguraGrupo = (LARGURA_TOTAL - MARGEM_ESQUERDA - MARGEM_DIREITA) / FAIXAS_PEDIDOS.length
   const faixaCem = FAIXAS_PEDIDOS.find((f) => f.pedidos === 100)
   const economiaCem = faixaCem ? faixaCem.custoApp - faixaCem.custoMeuCardapio : 0
+
+  useEffect(() => {
+    if (reduzMovimento() || !svgRef.current) return
+
+    // As barras crescem de baixo pra cima (scaleY, âncora na base) e o
+    // valor aparece logo depois — só a cor é o dado; o resto é reforço.
+    const ctx = gsap.context(() => {
+      gsap.set(barrasRef.current, { scaleY: 0, transformOrigin: '50% 100%' })
+      gsap.set(rotulosRef.current, { opacity: 0, y: 6 })
+
+      ScrollTrigger.create({
+        trigger: svgRef.current,
+        start: 'top 85%',
+        once: true,
+        onEnter: () => {
+          const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+          barrasRef.current.forEach((barra, i) => {
+            tl.to(barra, { scaleY: 1, duration: 0.55 }, i * 0.07)
+            tl.to(rotulosRef.current[i], { opacity: 1, y: 0, duration: 0.3 }, i * 0.07 + 0.3)
+          })
+        },
+      })
+    }, svgRef)
+
+    return () => ctx.revert()
+  }, [])
 
   return (
     <div>
@@ -56,7 +88,13 @@ export function GraficoEconomia() {
         </li>
       </ul>
 
-      <svg viewBox="0 0 640 300" className="w-full" role="img" aria-labelledby="grafico-economia-titulo">
+      <svg
+        ref={svgRef}
+        viewBox="0 0 640 300"
+        className="w-full"
+        role="img"
+        aria-labelledby="grafico-economia-titulo"
+      >
         <title id="grafico-economia-titulo">
           Comparação de custo mensal: comissão de app de delivery vs. MeuCardápio, por faixa de
           pedidos
@@ -91,8 +129,17 @@ export function GraficoEconomia() {
 
           return (
             <g key={faixa.pedidos}>
-              <path d={caminhoBarra(xApp, faixa.custoApp)} fill={COR_APP} />
+              <path
+                ref={(el) => {
+                  barrasRef.current[i * 2] = el
+                }}
+                d={caminhoBarra(xApp, faixa.custoApp)}
+                fill={COR_APP}
+              />
               <text
+                ref={(el) => {
+                  rotulosRef.current[i * 2] = el
+                }}
                 x={xApp + LARGURA_BARRA / 2}
                 y={y(faixa.custoApp) - 8}
                 textAnchor="middle"
@@ -101,8 +148,17 @@ export function GraficoEconomia() {
                 {formatarPreco(faixa.custoApp)}
               </text>
 
-              <path d={caminhoBarra(xMeu, faixa.custoMeuCardapio)} fill={COR_MEUCARDAPIO} />
+              <path
+                ref={(el) => {
+                  barrasRef.current[i * 2 + 1] = el
+                }}
+                d={caminhoBarra(xMeu, faixa.custoMeuCardapio)}
+                fill={COR_MEUCARDAPIO}
+              />
               <text
+                ref={(el) => {
+                  rotulosRef.current[i * 2 + 1] = el
+                }}
                 x={xMeu + LARGURA_BARRA / 2}
                 y={y(faixa.custoMeuCardapio) - 8}
                 textAnchor="middle"
