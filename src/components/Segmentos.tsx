@@ -18,9 +18,9 @@ export function Segmentos() {
           href={SEGMENTO_DESTAQUE.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="border-creme/10 bg-carvao-claro group mt-10 grid overflow-hidden rounded-2xl border sm:grid-cols-2"
+          className="border-creme/10 bg-carvao-claro group mt-10 grid max-w-3xl overflow-hidden rounded-2xl border sm:grid-cols-2"
         >
-          <div className="aspect-square overflow-hidden">
+          <div className="aspect-square overflow-hidden sm:max-h-[380px]">
             <img
               src={SEGMENTO_DESTAQUE.foto}
               alt={`Tela do site — ${SEGMENTO_DESTAQUE.nome}`}

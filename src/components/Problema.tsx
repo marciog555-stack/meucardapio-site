@@ -18,7 +18,7 @@ export function Problema() {
       </Reveal>
 
       <Reveal delayMs={100}>
-        <div className="border-creme/10 bg-carvao-claro mt-14 rounded-2xl border p-6 sm:p-10">
+        <div className="border-creme/10 bg-carvao-claro mt-14 max-w-2xl rounded-2xl border p-6 sm:p-10">
           <GraficoEconomia />
         </div>
       </Reveal>
