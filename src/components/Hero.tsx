@@ -67,7 +67,7 @@ export function Hero() {
             Quero meu site
           </a>
           <p className="text-creme/50 mt-3 text-sm">
-            R$100 pra montar + R$50/mês depois. Sem contrato, sem fidelidade.
+            R$150 no 1º mês, R$50/mês depois. Sem contrato, sem fidelidade.
           </p>
         </div>
       </div>

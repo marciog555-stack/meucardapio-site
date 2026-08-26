@@ -9,8 +9,11 @@ export function Confianca() {
       <Reveal>
         <div className="border-creme/10 mx-auto max-w-2xl rounded-2xl border p-8 text-center sm:p-12">
           <h2 className="font-display text-creme text-3xl uppercase sm:text-4xl">
-            R$100 pra montar. R$50 por mês depois.
+            R$150 no primeiro mês. R$50 por mês depois.
           </h2>
+          <p className="text-creme/60 mt-2 text-sm">
+            R$100 de montagem + R$50 da primeira mensalidade.
+          </p>
           <p className="text-creme/60 mt-3 text-base sm:text-lg">
             Sem contrato, sem fidelidade, sem letra miúda. Cancela quando quiser.
           </p>
