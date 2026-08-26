@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useRef } from 'react'
-import { gsap } from '../lib/gsap'
+import { gsap, reduzMovimento } from '../lib/gsap'
 
 // Carrega o three.js só quando o Hero é montado no cliente — sem isso ele
 // entrava no bundle principal e atrasava o primeiro parágrafo visível.
@@ -15,11 +15,24 @@ export function Hero() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 0.6 } })
-      tl.from('[data-hero-eyebrow]', { opacity: 0, y: 16 })
-        .from('[data-hero-titulo] > span', { opacity: 0, y: 28, stagger: 0.08 }, '-=0.35')
-        .from('[data-hero-sub]', { opacity: 0, y: 16 }, '-=0.3')
-        .from('[data-hero-cta]', { opacity: 0, y: 16 }, '-=0.35')
+      const alvos = ['[data-hero-eyebrow]', '[data-hero-titulo] > span', '[data-hero-sub]', '[data-hero-cta]']
+
+      if (reduzMovimento()) {
+        // Pula direto pro estado final em vez de tocar a tween: com o
+        // encadeamento em sobreposição negativa que a timeline usa, o
+        // GSAP acaba capturando o valor "de chegada" de cada .from() no
+        // momento errado e a entrada trava no opacity:0 pra sempre —
+        // melhor nem tentar animar aqui.
+        gsap.set(alvos, { opacity: 1, y: 0 })
+        return
+      }
+
+      gsap
+        .timeline({ defaults: { ease: 'power3.out', duration: 0.6 } })
+        .from(alvos[0], { opacity: 0, y: 16 })
+        .from(alvos[1], { opacity: 0, y: 28, stagger: 0.08 }, '-=0.35')
+        .from(alvos[2], { opacity: 0, y: 16 }, '-=0.3')
+        .from(alvos[3], { opacity: 0, y: 16 }, '-=0.35')
     }, secaoRef)
 
     return () => ctx.revert()
