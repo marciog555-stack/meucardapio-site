@@ -1,12 +1,17 @@
-import { useEffect, useRef } from 'react'
-import { gsap, reduzMovimento } from '../lib/gsap'
+import { lazy, Suspense, useEffect, useRef } from 'react'
+import { gsap } from '../lib/gsap'
+
+// Carrega o three.js só quando o Hero é montado no cliente — sem isso ele
+// entrava no bundle principal e atrasava o primeiro parágrafo visível.
+const BurgerCena = lazy(() =>
+  import('./BurgerCena').then((m) => ({ default: m.BurgerCena })),
+)
 
 const WHATSAPP = '5562995471262'
 const MENSAGEM = encodeURIComponent('Oi! Vi o MeuCardápio e quero um site assim pro meu restaurante.')
 
 export function Hero() {
   const secaoRef = useRef<HTMLElement>(null)
-  const bgRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -15,35 +20,17 @@ export function Hero() {
         .from('[data-hero-titulo] > span', { opacity: 0, y: 28, stagger: 0.08 }, '-=0.35')
         .from('[data-hero-sub]', { opacity: 0, y: 16 }, '-=0.3')
         .from('[data-hero-cta]', { opacity: 0, y: 16 }, '-=0.35')
-
-      if (!reduzMovimento() && bgRef.current) {
-        gsap.fromTo(
-          bgRef.current,
-          { scale: 1.18 },
-          {
-            scale: 1,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: secaoRef.current,
-              start: 'top top',
-              end: 'bottom top',
-              scrub: true,
-            },
-          },
-        )
-      }
     }, secaoRef)
 
     return () => ctx.revert()
   }, [])
 
   return (
-    <section ref={secaoRef} className="relative flex min-h-svh items-end overflow-hidden">
-      <div
-        ref={bgRef}
-        className="hero-bg absolute inset-0 -z-20 bg-cover bg-center"
-      />
-      <div className="from-carvao via-carvao/80 absolute inset-0 -z-10 bg-gradient-to-t to-transparent" />
+    <section ref={secaoRef} className="bg-carvao relative flex min-h-svh items-end overflow-hidden">
+      <Suspense fallback={null}>
+        <BurgerCena containerRef={secaoRef} className="absolute inset-0 -z-20 h-full w-full" />
+      </Suspense>
+      <div className="from-carvao via-carvao/75 pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t to-transparent" />
 
       <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-16 sm:px-10 sm:pb-24 lg:px-20">
         <p
