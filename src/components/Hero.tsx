@@ -1,11 +1,5 @@
-import { lazy, Suspense, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { gsap, reduzMovimento } from '../lib/gsap'
-
-// Carrega o three.js só quando o Hero é montado no cliente — sem isso ele
-// entrava no bundle principal e atrasava o primeiro parágrafo visível.
-const BurgerFrames = lazy(() =>
-  import('./BurgerFrames').then((m) => ({ default: m.BurgerFrames })),
-)
 
 const WHATSAPP = '5562995471262'
 const MENSAGEM = encodeURIComponent('Oi! Vi o MeuCardápio e quero um site assim pro meu restaurante.')
@@ -39,10 +33,7 @@ export function Hero() {
   }, [])
 
   return (
-    <section ref={secaoRef} className="bg-carvao relative flex min-h-svh items-end overflow-hidden">
-      <Suspense fallback={null}>
-        <BurgerFrames containerRef={secaoRef} className="absolute inset-0 -z-20 h-full w-full" />
-      </Suspense>
+    <section ref={secaoRef} className="relative flex min-h-svh items-end overflow-hidden">
       <div className="from-carvao via-carvao/75 pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t to-transparent" />
 
       <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-16 sm:px-10 sm:pb-24 lg:px-20">
