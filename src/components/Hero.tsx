@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { gsap, reduzMovimento } from '../lib/gsap'
 
 const WHATSAPP = '5562995471262'
-const MENSAGEM = encodeURIComponent('Oi! Vi o MeuCardápio e quero um site assim pro meu restaurante.')
+const MENSAGEM = encodeURIComponent('Oi! Vi o MeuCardápioGo e quero um site assim pro meu restaurante.')
 
 export function Hero() {
   const secaoRef = useRef<HTMLElement>(null)

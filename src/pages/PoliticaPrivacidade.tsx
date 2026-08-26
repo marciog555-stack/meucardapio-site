@@ -1,5 +1,5 @@
 const WHATSAPP = '5562995471262'
-const MENSAGEM = encodeURIComponent('Oi! Tenho uma dúvida sobre a política de privacidade do MeuCardápio.')
+const MENSAGEM = encodeURIComponent('Oi! Tenho uma dúvida sobre a política de privacidade do MeuCardápioGo.')
 
 export function PoliticaPrivacidade() {
   return (
@@ -10,13 +10,13 @@ export function PoliticaPrivacidade() {
         </a>
 
         <h1 className="font-display text-creme mt-6 text-3xl uppercase">Política de Privacidade</h1>
-        <p className="text-creme/50 mt-2 text-sm">MeuCardápio — atualizada em 22/08/2026</p>
+        <p className="text-creme/50 mt-2 text-sm">MeuCardápioGo — atualizada em 22/08/2026</p>
 
         <div className="mt-8 flex flex-col gap-6 text-sm leading-relaxed">
           <section>
             <h2 className="text-burger mb-1 font-semibold">1. Sobre este site</h2>
             <p>
-              Este site é a apresentação do MeuCardápio, um sistema de pedidos que restaurantes
+              Este site é a apresentação do MeuCardápioGo, um sistema de pedidos que restaurantes
               contratam pra ter site próprio. Ele não tem formulário de cadastro nem login — a
               única forma de contato é o botão que abre o WhatsApp.
             </p>
@@ -41,9 +41,9 @@ export function PoliticaPrivacidade() {
           </section>
 
           <section>
-            <h2 className="text-burger mb-1 font-semibold">4. Se você já é cliente MeuCardápio</h2>
+            <h2 className="text-burger mb-1 font-semibold">4. Se você já é cliente MeuCardápioGo</h2>
             <p>
-              Se o seu restaurante já usa o MeuCardápio, o site que seus clientes acessam pra pedir
+              Se o seu restaurante já usa o MeuCardápioGo, o site que seus clientes acessam pra pedir
               tem sua própria Política de Privacidade (em <code className="text-creme/70">/privacidade</code>{' '}
               no seu site), explicando como os dados de quem pede com você são tratados.
             </p>

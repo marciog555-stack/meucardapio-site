@@ -84,7 +84,7 @@ export function GraficoEconomia() {
             style={{ backgroundColor: COR_MEUCARDAPIO }}
             aria-hidden="true"
           />
-          <span className="text-creme/70">MeuCardápio ({formatarPreco(PRECO_MENSAL)}/mês)</span>
+          <span className="text-creme/70">MeuCardápioGo ({formatarPreco(PRECO_MENSAL)}/mês)</span>
         </li>
       </ul>
 
@@ -96,7 +96,7 @@ export function GraficoEconomia() {
         aria-labelledby="grafico-economia-titulo"
       >
         <title id="grafico-economia-titulo">
-          Comparação de custo mensal: comissão de app de delivery vs. MeuCardápio, por faixa de
+          Comparação de custo mensal: comissão de app de delivery vs. MeuCardápioGo, por faixa de
           pedidos
         </title>
 
@@ -191,12 +191,12 @@ export function GraficoEconomia() {
       </svg>
 
       <table className="sr-only">
-        <caption>Custo mensal: comissão do app vs. MeuCardápio, por faixa de pedidos</caption>
+        <caption>Custo mensal: comissão do app vs. MeuCardápioGo, por faixa de pedidos</caption>
         <thead>
           <tr>
             <th>Pedidos por mês</th>
             <th>Comissão do app</th>
-            <th>MeuCardápio</th>
+            <th>MeuCardápioGo</th>
           </tr>
         </thead>
         <tbody>

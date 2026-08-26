@@ -6,7 +6,7 @@ export function Nav() {
         aria-hidden="true"
       />
       <span className="font-display text-creme text-xl tracking-wide uppercase">
-        Meu<span className="text-burger">Cardápio</span>
+        Meu<span className="text-burger">Cardápio</span>Go
       </span>
     </nav>
   )

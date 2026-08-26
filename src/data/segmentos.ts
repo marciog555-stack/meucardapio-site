@@ -6,7 +6,7 @@ export interface Segmento {
   link: string
 }
 
-/** Exemplo real, no ar, rodando no MeuCardápio — não é mockup. */
+/** Exemplo real, no ar, rodando no MeuCardápioGo — não é mockup. */
 export const SEGMENTO_DESTAQUE: Segmento = {
   nome: 'Brasa & Cia',
   cor: 'var(--color-burger)',

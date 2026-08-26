@@ -1,5 +1,5 @@
 const WHATSAPP = '5562995471262'
-const MENSAGEM = encodeURIComponent('Oi! Vi o MeuCardápio e quero um site assim pro meu restaurante.')
+const MENSAGEM = encodeURIComponent('Oi! Vi o MeuCardápioGo e quero um site assim pro meu restaurante.')
 
 export function Rodape() {
   return (
@@ -7,7 +7,7 @@ export function Rodape() {
       <div className="mx-auto flex max-w-6xl flex-col gap-10 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <span className="font-display text-creme text-2xl uppercase">
-            Meu<span className="text-burger">Cardápio</span>
+            Meu<span className="text-burger">Cardápio</span>Go
           </span>
           <p className="text-creme/50 mt-3 max-w-xs text-sm">
             O sistema de pedidos que é seu — site próprio, WhatsApp direto,
@@ -30,7 +30,7 @@ export function Rodape() {
       </div>
 
       <div className="text-creme/60 mx-auto mt-14 flex max-w-6xl flex-wrap items-center gap-x-4 gap-y-1 text-xs">
-        <span>© {new Date().getFullYear()} MeuCardápio — Todos os direitos reservados.</span>
+        <span>© {new Date().getFullYear()} MeuCardápioGo — Todos os direitos reservados.</span>
         <a href="/privacidade" className="hover:text-creme underline">
           Política de Privacidade
         </a>
