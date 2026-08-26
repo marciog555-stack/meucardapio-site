@@ -15,7 +15,7 @@ export function Confianca() {
             Sem contrato, sem fidelidade, sem letra miúda. Cancela quando quiser.
           </p>
           <p className="text-creme/50 mt-3 text-sm">
-            Prefere usar o domínio da sua própria marca? Também dá — é só me falar.
+            A partir de R$40 anual, você tem o seu domínio próprio.
           </p>
           <p className="text-creme/50 mt-6 text-sm">
             Fala direto comigo — sem vendedor, sem robô de atendimento.
