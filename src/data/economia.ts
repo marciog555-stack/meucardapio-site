@@ -1,9 +1,11 @@
+import { PRECO_MENSAL } from './planos'
+
 /** Números ilustrativos pra mostrar a diferença de custo — ticket médio e
  * comissão são valores típicos de app de delivery no Brasil, não dado de
  * cliente real. */
 export const TICKET_MEDIO = 45
 export const COMISSAO_APP = 0.25
-export const PRECO_MENSAL = 50
+export { PRECO_MENSAL }
 
 export interface FaixaPedidos {
   pedidos: number

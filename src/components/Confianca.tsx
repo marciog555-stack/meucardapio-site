@@ -14,7 +14,7 @@ export function Confianca() {
             {formatarPreco(PRECO_PRIMEIRO_MES)} no primeiro mês. {formatarPreco(PRECO_MENSAL)} por mês depois.
           </h2>
           <p className="text-creme/60 mt-2 text-sm">
-            {formatarPreco(PRECO_MONTAGEM)} de montagem + {formatarPreco(PRECO_MENSAL)} da primeira mensalidade.
+            {formatarPreco(PRECO_MONTAGEM)} de implantação + {formatarPreco(PRECO_MENSAL)} da primeira mensalidade.
           </p>
           <p className="text-creme/60 mt-3 text-base sm:text-lg">
             Sem contrato, sem fidelidade, sem letra miúda. Cancela quando quiser.

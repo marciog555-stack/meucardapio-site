@@ -1,7 +1,8 @@
 /** Preços oficiais — o que está aqui é o que o Márcio cobra de verdade. */
-export const PRECO_PRIMEIRO_MES = 150
-export const PRECO_MONTAGEM = 100
-export const PRECO_MENSAL = 50
+export const PRECO_MONTAGEM = 200
+export const PRECO_MENSAL = 75
+/** Montagem + a primeira mensalidade. */
+export const PRECO_PRIMEIRO_MES = PRECO_MONTAGEM + PRECO_MENSAL
 
 /** Add-on MeuCardápio 3D (3D, realidade aumentada, giro 360° e atendimento
  * na mesa). Valores definidos pelo Márcio. */
