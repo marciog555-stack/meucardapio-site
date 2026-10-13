@@ -1,7 +1,7 @@
 import { createElement, useEffect, useRef, useState } from 'react'
 
 /**
- * Demonstração ao vivo do MeuCardápio 360: o mesmo <model-viewer> (versão
+ * Demonstração ao vivo do MeuCardápio 3D: o mesmo <model-viewer> (versão
  * fixada no package.json) que roda no cardápio dos clientes, com o frango da
  * loja de demonstração Resenha Bar. A biblioteca e o modelo (~2,4 MB) só
  * baixam quando a seção chega perto da tela.

@@ -1,4 +1,4 @@
-import { PRECO_360_MENSAL, PRECO_MENSAL, PRECO_MONTAGEM, PRECO_PRIMEIRO_MES } from '../data/planos'
+import { PRECO_360_MENSAL, PRECO_MENSAL, PRECO_MONTAGEM, PRECO_PRIMEIRO_MES, TABELA_3D } from '../data/planos'
 import { formatarPreco } from '../lib/formato'
 import { Reveal } from './Reveal'
 
@@ -22,15 +22,31 @@ export function Confianca() {
           <p className="text-creme/50 mt-3 text-sm">
             A partir de R$40 anual, você tem o seu domínio próprio.
           </p>
-          <div className="border-macarrao/40 mt-6 rounded-xl border px-5 py-4">
-            <p className="text-macarrao text-xs font-semibold tracking-[0.2em] uppercase">Add-on MeuCardápio 360</p>
-            <p className="text-creme mt-1 text-base font-semibold">
+          <div className="border-macarrao/40 mt-6 rounded-xl border px-5 py-5 text-left">
+            <p className="text-macarrao text-center text-xs font-semibold tracking-[0.2em] uppercase">
+              Add-on MeuCardápio 3D
+            </p>
+            <p className="text-creme mt-1 text-center text-xl font-semibold">
               {PRECO_360_MENSAL !== null ? `+${formatarPreco(PRECO_360_MENSAL)} por mês` : 'Valor sob consulta'}
             </p>
-            <p className="text-creme/60 mt-1 text-sm">
+            <p className="text-creme/60 mt-1 text-center text-sm">
               Prato em 3D, “Ver na mesa”, giro 360° e, pra quem atende no local, pedido pela mesa com QR Code,
               garçom e comandas.
             </p>
+            <p className="text-creme/50 mt-4 text-xs font-semibold tracking-[0.2em] uppercase">
+              Implantação dos pratos (pagamento único)
+            </p>
+            <ul className="divide-creme/10 mt-1 divide-y">
+              {TABELA_3D.map((linha) => (
+                <li key={linha.item} className="flex items-baseline justify-between gap-4 py-2 text-sm">
+                  <span className="text-creme/80">
+                    {linha.item}
+                    {linha.detalhe && <span className="text-creme/40"> · {linha.detalhe}</span>}
+                  </span>
+                  <span className="text-creme shrink-0 font-semibold tabular-nums">{formatarPreco(linha.preco)}</span>
+                </li>
+              ))}
+            </ul>
           </div>
           <p className="text-creme/50 mt-6 text-sm">
             Fala direto comigo — sem vendedor, sem robô de atendimento.

@@ -1,4 +1,4 @@
-import { PRECO_360_MENSAL } from '../data/planos'
+import { PRECO_360_MENSAL, TABELA_3D } from '../data/planos'
 import { formatarPreco } from '../lib/formato'
 import { Prato3D } from './Prato3D'
 import { Reveal } from './Reveal'
@@ -28,11 +28,11 @@ const RECURSOS = [
 
 export function Novidade360() {
   return (
-    <section id="360" className="px-6 py-24 sm:px-10 lg:px-20">
+    <section id="3d" className="px-6 py-24 sm:px-10 lg:px-20">
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-20">
         <Reveal>
           <p className="text-macarrao text-xs font-semibold tracking-[0.3em] uppercase">
-            Novo · MeuCardápio 360
+            Novo · MeuCardápio 3D
           </p>
           <h2 className="font-display text-creme mt-3 text-4xl uppercase sm:text-5xl">
             O prato na mesa antes do pedido
@@ -51,8 +51,9 @@ export function Novidade360() {
           </ul>
           <p className="text-creme/50 mt-8 text-sm">
             Add-on opcional
-            {PRECO_360_MENSAL !== null ? ` · +${formatarPreco(PRECO_360_MENSAL)}/mês` : ' · valor sob consulta'}. Inclui
-            também o atendimento na mesa (abaixo).
+            {PRECO_360_MENSAL !== null ? ` · +${formatarPreco(PRECO_360_MENSAL)}/mês` : ' · valor sob consulta'}, com
+            pacotes de pratos a partir de {formatarPreco(TABELA_3D[0].preco)}. Inclui também o atendimento na mesa
+            (abaixo).
           </p>
         </Reveal>
 
