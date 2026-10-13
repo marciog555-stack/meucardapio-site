@@ -1,9 +1,10 @@
-import { PRECO_360_MENSAL, PRECO_MENSAL, PRECO_MONTAGEM, PRECO_PRIMEIRO_MES, TABELA_3D } from '../data/planos'
+import { PRECO_360_MENSAL, PRECO_MENSAL, PRECO_MONTAGEM, PRECO_PRIMEIRO_MES, PRECO_3D_A_PARTIR_DE } from '../data/planos'
 import { formatarPreco } from '../lib/formato'
 import { Reveal } from './Reveal'
 
 const WHATSAPP = '5562995471262'
 const MENSAGEM = encodeURIComponent('Oi! Vi o MeuCardápioGo e quero um site assim pro meu restaurante.')
+const MENSAGEM_3D = encodeURIComponent('Oi! Vi o MeuCardápio 3D e quero montar o cardápio do meu restaurante em 3D.')
 
 export function Confianca() {
   return (
@@ -22,7 +23,7 @@ export function Confianca() {
           <p className="text-creme/65 mt-3 text-sm">
             A partir de R$40 anual, você tem o seu domínio próprio.
           </p>
-          <div className="border-macarrao/40 mt-6 rounded-xl border px-5 py-5 text-left">
+          <div className="border-macarrao/40 mt-6 rounded-xl border px-5 py-5">
             <p className="text-macarrao text-center text-xs font-semibold tracking-[0.2em] uppercase">
               Add-on MeuCardápio 3D
             </p>
@@ -33,20 +34,20 @@ export function Confianca() {
               Prato em 3D, “Ver na mesa”, giro 360° e, pra quem atende no local, pedido pela mesa com QR Code,
               garçom e comandas.
             </p>
-            <p className="text-creme/65 mt-4 text-xs font-semibold tracking-[0.2em] uppercase">
-              Implantação dos pratos (pagamento único)
+            <p className="text-creme mt-4 text-center text-base">
+              Pratos em 3D a partir de <span className="font-semibold">{formatarPreco(PRECO_3D_A_PARTIR_DE)}</span>
+              <span className="text-creme/65"> (pagamento único)</span>
             </p>
-            <ul className="divide-creme/10 mt-1 divide-y">
-              {TABELA_3D.map((linha) => (
-                <li key={linha.item} className="flex items-baseline justify-between gap-4 py-2 text-sm">
-                  <span className="text-creme/80">
-                    {linha.item}
-                    {linha.detalhe && <span className="text-creme/55"> · {linha.detalhe}</span>}
-                  </span>
-                  <span className="text-creme shrink-0 font-semibold tabular-nums">{formatarPreco(linha.preco)}</span>
-                </li>
-              ))}
-            </ul>
+            <div className="text-center">
+              <a
+                href={`https://wa.me/${WHATSAPP}?text=${MENSAGEM_3D}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-macarrao text-macarrao mt-4 inline-flex min-h-12 items-center justify-center rounded-full border px-5 text-sm font-bold whitespace-nowrap uppercase transition-transform active:scale-95"
+              >
+                Montar meu cardápio 3D
+              </a>
+            </div>
           </div>
           <p className="text-creme/65 mt-6 text-sm">
             Fala direto comigo — sem vendedor, sem robô de atendimento.

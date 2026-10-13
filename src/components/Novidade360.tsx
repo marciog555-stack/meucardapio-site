@@ -1,4 +1,4 @@
-import { PRECO_360_MENSAL, TABELA_3D } from '../data/planos'
+import { PRECO_360_MENSAL, PRECO_3D_A_PARTIR_DE } from '../data/planos'
 import { formatarPreco } from '../lib/formato'
 import { Prato3D } from './Prato3D'
 import { Reveal } from './Reveal'
@@ -52,7 +52,7 @@ export function Novidade360() {
           <p className="text-creme/65 mt-8 text-sm">
             Add-on opcional
             {PRECO_360_MENSAL !== null ? ` · +${formatarPreco(PRECO_360_MENSAL)}/mês` : ' · valor sob consulta'}, com
-            pacotes de pratos a partir de {formatarPreco(TABELA_3D[0].preco)}. Inclui também o atendimento na mesa
+            pratos em 3D a partir de {formatarPreco(PRECO_3D_A_PARTIR_DE)}. Inclui também o atendimento na mesa
             (abaixo).
           </p>
         </Reveal>

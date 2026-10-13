@@ -8,16 +8,6 @@ export const PRECO_PRIMEIRO_MES = PRECO_MONTAGEM + PRECO_MENSAL
  * na mesa). Valores definidos pelo Márcio. */
 export const PRECO_360_MENSAL: number | null = 39
 
-export interface ItemTabela3D {
-  item: string
-  preco: number
-  detalhe?: string
-}
-
-/** Implantação dos pratos em 3D/360° — cobrança única, por pacote ou avulso. */
-export const TABELA_3D: ItemTabela3D[] = [
-  { item: 'Pacote 5 pratos em 3D', preco: 290 },
-  { item: 'Pacote 10 pratos em 3D', preco: 490 },
-  { item: 'Prato extra ou troca de prato', preco: 50 },
-  { item: 'Drink ou item em giro 360° (vídeo)', preco: 25 },
-]
+/** Menor valor de implantação dos pratos em 3D (pacote de 5) — o site só
+ * mostra o "a partir de"; os pacotes e avulsos o Márcio passa no WhatsApp. */
+export const PRECO_3D_A_PARTIR_DE = 290
