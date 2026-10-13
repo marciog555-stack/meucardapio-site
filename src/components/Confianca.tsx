@@ -1,3 +1,5 @@
+import { PRECO_360_MENSAL, PRECO_MENSAL, PRECO_MONTAGEM, PRECO_PRIMEIRO_MES } from '../data/planos'
+import { formatarPreco } from '../lib/formato'
 import { Reveal } from './Reveal'
 
 const WHATSAPP = '5562995471262'
@@ -9,10 +11,10 @@ export function Confianca() {
       <Reveal>
         <div className="border-creme/10 mx-auto max-w-2xl rounded-2xl border p-8 text-center sm:p-12">
           <h2 className="font-display text-creme text-3xl uppercase sm:text-4xl">
-            R$150 no primeiro mês. R$50 por mês depois.
+            {formatarPreco(PRECO_PRIMEIRO_MES)} no primeiro mês. {formatarPreco(PRECO_MENSAL)} por mês depois.
           </h2>
           <p className="text-creme/60 mt-2 text-sm">
-            R$100 de montagem + R$50 da primeira mensalidade.
+            {formatarPreco(PRECO_MONTAGEM)} de montagem + {formatarPreco(PRECO_MENSAL)} da primeira mensalidade.
           </p>
           <p className="text-creme/60 mt-3 text-base sm:text-lg">
             Sem contrato, sem fidelidade, sem letra miúda. Cancela quando quiser.
@@ -20,6 +22,16 @@ export function Confianca() {
           <p className="text-creme/50 mt-3 text-sm">
             A partir de R$40 anual, você tem o seu domínio próprio.
           </p>
+          <div className="border-macarrao/40 mt-6 rounded-xl border px-5 py-4">
+            <p className="text-macarrao text-xs font-semibold tracking-[0.2em] uppercase">Add-on MeuCardápio 360</p>
+            <p className="text-creme mt-1 text-base font-semibold">
+              {PRECO_360_MENSAL !== null ? `+${formatarPreco(PRECO_360_MENSAL)} por mês` : 'Valor sob consulta'}
+            </p>
+            <p className="text-creme/60 mt-1 text-sm">
+              Prato em 3D, “Ver na mesa”, giro 360° e, pra quem atende no local, pedido pela mesa com QR Code,
+              garçom e comandas.
+            </p>
+          </div>
           <p className="text-creme/50 mt-6 text-sm">
             Fala direto comigo — sem vendedor, sem robô de atendimento.
           </p>
