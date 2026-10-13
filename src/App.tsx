@@ -8,6 +8,7 @@ import { Problema } from './components/Problema'
 import { Novidade360 } from './components/Novidade360'
 import { Salao } from './components/Salao'
 import { Demos } from './components/Demos'
+import { Depoimentos } from './components/Depoimentos'
 import { ComoFunciona } from './components/ComoFunciona'
 import { Confianca } from './components/Confianca'
 import { Rodape } from './components/Rodape'
@@ -35,6 +36,7 @@ function App() {
         <Novidade360 />
         <Salao />
         <Demos />
+        <Depoimentos />
         <ComoFunciona />
         <Confianca />
       </main>
