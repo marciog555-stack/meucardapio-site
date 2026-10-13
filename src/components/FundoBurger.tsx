@@ -14,6 +14,13 @@ const COR_FUNDO = '#0a0908'
 // fundo estático pro resto do site.
 const ALTURAS_DE_TELA_PRA_ABRIR = 2.4
 
+// Véu extra por cima do hambúrguer depois do Hero: o fundo fica forte no
+// topo (onde só tem o título grande) e vai escurecendo até VEU_MAXIMO nas
+// seções de texto, que ficavam difíceis de ler com o hambúrguer claro atrás.
+const VEU_MAXIMO = 0.7
+const VEU_COMECA_EM = 0.55 // em alturas de tela rolada
+const VEU_COMPLETO_EM = 1.25
+
 /** Fundo da página inteira: o vídeo real do hambúrguer se abrindo (mandado
  * pelo Márcio), tocado quadro a quadro conforme o scroll — preenchendo a
  * tela toda (sem sobrar preto nas bordas) e acompanhando a rolagem por
@@ -21,6 +28,28 @@ const ALTURAS_DE_TELA_PRA_ABRIR = 2.4
  * z-index negativo) e não precisa de "pin": a página rola livre por cima. */
 export function FundoBurger() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const veuRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    let quadro = 0
+    function atualizarVeu() {
+      quadro = 0
+      const telas = window.scrollY / window.innerHeight
+      const t = Math.min(1, Math.max(0, (telas - VEU_COMECA_EM) / (VEU_COMPLETO_EM - VEU_COMECA_EM)))
+      if (veuRef.current) veuRef.current.style.opacity = String(t * VEU_MAXIMO)
+    }
+    function aoRolar() {
+      if (!quadro) quadro = requestAnimationFrame(atualizarVeu)
+    }
+    atualizarVeu()
+    window.addEventListener('scroll', aoRolar, { passive: true })
+    window.addEventListener('resize', aoRolar)
+    return () => {
+      cancelAnimationFrame(quadro)
+      window.removeEventListener('scroll', aoRolar)
+      window.removeEventListener('resize', aoRolar)
+    }
+  }, [])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -128,5 +157,14 @@ export function FundoBurger() {
     }
   }, [])
 
-  return <canvas ref={canvasRef} className="fixed inset-0 -z-10 h-screen w-screen" aria-hidden="true" />
+  return (
+    <>
+      <canvas ref={canvasRef} className="fixed inset-0 -z-10 h-screen w-screen" aria-hidden="true" />
+      <div
+        ref={veuRef}
+        className="bg-carvao pointer-events-none fixed inset-0 -z-10 h-screen w-screen opacity-0"
+        aria-hidden="true"
+      />
+    </>
+  )
 }

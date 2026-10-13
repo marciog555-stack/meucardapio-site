@@ -9,7 +9,7 @@ export function Rodape() {
           <span className="font-display text-creme text-2xl uppercase">
             Meu<span className="text-burger">Cardápio</span>Go
           </span>
-          <p className="text-creme/50 mt-3 max-w-xs text-sm">
+          <p className="text-creme/65 mt-3 max-w-xs text-sm">
             O sistema de pedidos que é seu — site próprio, WhatsApp direto ou
             pedido na mesa, sem comissão por pedido.
           </p>
@@ -25,11 +25,11 @@ export function Rodape() {
           >
             Falar no WhatsApp
           </a>
-          <p className="text-creme/60 text-xs">Resposta rápida, sem robô</p>
+          <p className="text-creme/75 text-xs">Resposta rápida, sem robô</p>
         </div>
       </div>
 
-      <div className="text-creme/60 mx-auto mt-14 flex max-w-6xl flex-wrap items-center gap-x-4 gap-y-1 text-xs">
+      <div className="text-creme/75 mx-auto mt-14 flex max-w-6xl flex-wrap items-center gap-x-4 gap-y-1 text-xs">
         <span>© {new Date().getFullYear()} MeuCardápioGo — Todos os direitos reservados.</span>
         <a href="/privacidade" className="hover:text-creme underline">
           Política de Privacidade

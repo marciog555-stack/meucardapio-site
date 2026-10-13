@@ -73,7 +73,7 @@ export function Prato3D() {
           </button>,
         )
       ) : (
-        <p className="text-creme/50 flex h-full items-center justify-center p-8 text-center text-sm">
+        <p className="text-creme/65 flex h-full items-center justify-center p-8 text-center text-sm">
           {falhou ? 'Não consegui carregar o 3D neste aparelho.' : 'Carregando o prato em 3D…'}
         </p>
       )}

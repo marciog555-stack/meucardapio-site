@@ -215,7 +215,7 @@ export function GraficoEconomia() {
         <span className="text-burger font-semibold">{formatarPreco(economiaCem)} a mais</span> no
         seu bolso, todo mês.
       </p>
-      <p className="text-creme/60 mt-2 text-xs">
+      <p className="text-creme/75 mt-2 text-xs">
         Estimativa com ticket médio de R$45 e comissão de 25% — os números reais do seu restaurante
         podem variar.
       </p>

@@ -38,13 +38,13 @@ export function Salao() {
     <section id="mesa" className="px-6 py-24 sm:px-10 lg:px-20">
       <div className="mx-auto max-w-6xl">
         <Reveal>
-          <p className="text-creme/50 text-xs font-semibold tracking-[0.3em] uppercase">
+          <p className="text-creme/65 text-xs font-semibold tracking-[0.3em] uppercase">
             Bar, restaurante e petiscaria
           </p>
           <h2 className="font-display text-creme mt-3 max-w-3xl text-4xl uppercase sm:text-5xl">
             Atende na mesa? O pedido sai do celular do cliente
           </h2>
-          <p className="text-creme/60 mt-4 max-w-xl text-base sm:text-lg">
+          <p className="text-creme/75 mt-4 max-w-xl text-base sm:text-lg">
             Pra quem atende no local, sem delivery: o site vira o cardápio do salão. Menos fila no balcão, menos
             pedido anotado errado, garçom livre pra atender.
           </p>
@@ -58,7 +58,7 @@ export function Salao() {
                   {item.icone}
                 </span>
                 <h3 className="font-display text-creme mt-3 text-xl uppercase">{item.titulo}</h3>
-                <p className="text-creme/60 mt-1 text-sm">{item.texto}</p>
+                <p className="text-creme/75 mt-1 text-sm">{item.texto}</p>
               </div>
             </Reveal>
           ))}

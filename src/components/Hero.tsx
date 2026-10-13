@@ -69,7 +69,7 @@ export function Hero() {
           >
             Quero meu site
           </a>
-          <p className="text-creme/50 mt-3 text-sm">
+          <p className="text-creme/65 mt-3 text-sm">
             {formatarPreco(PRECO_PRIMEIRO_MES)} no 1º mês, {formatarPreco(PRECO_MENSAL)}/mês depois. Sem contrato, sem
             fidelidade.
           </p>

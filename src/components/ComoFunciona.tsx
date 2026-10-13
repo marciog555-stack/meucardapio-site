@@ -45,7 +45,7 @@ export function ComoFunciona() {
     <section ref={secaoRef} className="px-6 py-24 sm:px-10 lg:px-20">
       <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:gap-20">
         <div className="lg:sticky lg:top-24 lg:self-start">
-          <p className="text-creme/50 text-xs font-semibold tracking-[0.3em] uppercase">
+          <p className="text-creme/65 text-xs font-semibold tracking-[0.3em] uppercase">
             Como funciona
           </p>
           <h2 className="font-display text-creme mt-3 text-4xl uppercase sm:text-5xl">
@@ -80,7 +80,7 @@ export function ComoFunciona() {
               <h3 className="font-display text-creme mt-1 text-2xl uppercase sm:text-3xl">
                 {passo.titulo}
               </h3>
-              <p className="text-creme/60 mt-1 max-w-sm text-sm sm:text-base">
+              <p className="text-creme/75 mt-1 max-w-sm text-sm sm:text-base">
                 {passo.descricao}
               </p>
             </li>
