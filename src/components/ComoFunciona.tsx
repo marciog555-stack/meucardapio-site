@@ -57,7 +57,7 @@ export function ComoFunciona() {
           >
             <img
               src="/img/demo-brasa.webp"
-              alt="Tela do painel do MeuCardápioGo"
+              alt="Tela do cardápio de uma loja no MeuCardápioGo"
               className="h-full w-full object-cover object-top"
               loading="lazy"
             />

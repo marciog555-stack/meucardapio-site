@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { gsap, reduzMovimento } from '../lib/gsap'
+import { PRECO_MENSAL, PRECO_PRIMEIRO_MES } from '../data/planos'
+import { formatarPreco } from '../lib/formato'
 
 const WHATSAPP = '5562995471262'
 const MENSAGEM = encodeURIComponent('Oi! Vi o MeuCardápioGo e quero um site assim pro meu restaurante.')
@@ -41,7 +43,7 @@ export function Hero() {
           data-hero-eyebrow
           className="text-creme/70 text-xs font-semibold tracking-[0.35em] uppercase sm:text-sm"
         >
-          Sistema de pedidos pra restaurantes
+          Cardápio digital pra restaurante, delivery e bar
         </p>
         <h1
           data-hero-titulo
@@ -53,8 +55,9 @@ export function Hero() {
           <span className="text-burger block">Zero comissão.</span>
         </h1>
         <p data-hero-sub className="text-creme/80 mt-6 max-w-lg text-base sm:text-lg">
-          Um site profissional só seu, pedido caindo direto no seu WhatsApp —
-          sem pagar 30% de comissão por pedido pro aplicativo.
+          Um site profissional só seu: pedido direto no seu WhatsApp ou na mesa,
+          pelo QR Code — sem pagar comissão por pedido pro aplicativo. E agora
+          com o prato em 3D na mesa do cliente.
         </p>
         <div data-hero-cta>
           <a
@@ -67,7 +70,8 @@ export function Hero() {
             Quero meu site
           </a>
           <p className="text-creme/50 mt-3 text-sm">
-            R$150 no 1º mês, R$50/mês depois. Sem contrato, sem fidelidade.
+            {formatarPreco(PRECO_PRIMEIRO_MES)} no 1º mês, {formatarPreco(PRECO_MENSAL)}/mês depois. Sem contrato, sem
+            fidelidade.
           </p>
         </div>
       </div>

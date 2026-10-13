@@ -5,7 +5,9 @@ import { useAtualizarScrollAposFontes } from './hooks/useAtualizarScrollAposFont
 import { Nav } from './components/Nav'
 import { Hero } from './components/Hero'
 import { Problema } from './components/Problema'
-import { Segmentos } from './components/Segmentos'
+import { Novidade360 } from './components/Novidade360'
+import { Salao } from './components/Salao'
+import { Demos } from './components/Demos'
 import { ComoFunciona } from './components/ComoFunciona'
 import { Confianca } from './components/Confianca'
 import { Rodape } from './components/Rodape'
@@ -30,7 +32,9 @@ function App() {
       <main>
         <Hero />
         <Problema />
-        <Segmentos />
+        <Novidade360 />
+        <Salao />
+        <Demos />
         <ComoFunciona />
         <Confianca />
       </main>

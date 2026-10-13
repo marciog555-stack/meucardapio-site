@@ -10,8 +10,8 @@ export function Rodape() {
             Meu<span className="text-burger">Cardápio</span>Go
           </span>
           <p className="text-creme/50 mt-3 max-w-xs text-sm">
-            O sistema de pedidos que é seu — site próprio, WhatsApp direto,
-            sem comissão por pedido.
+            O sistema de pedidos que é seu — site próprio, WhatsApp direto ou
+            pedido na mesa, sem comissão por pedido.
           </p>
         </div>
 
