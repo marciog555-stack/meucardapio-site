@@ -21,32 +21,48 @@ export function Demos() {
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           {DEMOS.map((demo, i) => (
             <Reveal key={demo.nome} delayMs={80 * i}>
-              <a
-                href={demo.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="border-creme/10 bg-carvao-claro group grid h-full overflow-hidden rounded-2xl border sm:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]"
-              >
-                <div className="h-80 overflow-hidden sm:aspect-[480/820] sm:h-auto">
+              <div className="border-creme/10 bg-carvao-claro grid h-full overflow-hidden rounded-2xl border sm:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+                <a
+                  href={demo.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block h-80 overflow-hidden sm:aspect-[480/820] sm:h-auto"
+                  aria-label={`Abrir a loja ${demo.nome}`}
+                >
                   <img
                     src={demo.foto}
                     alt={`Tela do site — ${demo.nome}`}
                     loading="lazy"
                     className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
                   />
-                </div>
+                </a>
                 <div className="flex flex-col justify-center p-6 sm:p-8">
                   <span className="text-xs font-semibold tracking-[0.2em] uppercase" style={{ color: demo.cor }}>
                     {demo.tipo}
                   </span>
                   <h3 className="font-display text-creme mt-2 text-3xl uppercase">{demo.nome}</h3>
-                  <p className="text-creme/70 mt-3 text-sm sm:text-base">{demo.descricao}</p>
-                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold" style={{ color: demo.cor }}>
+                  <p className="text-creme/75 mt-3 text-sm sm:text-base">{demo.descricao}</p>
+                  <a
+                    href={demo.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold"
+                    style={{ color: demo.cor }}
+                  >
                     Abrir a loja →
-                  </span>
+                  </a>
                   <span className="text-creme/55 mt-1 text-xs">{demo.dica}</span>
+                  <a
+                    href={demo.painel}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="border-creme/20 text-creme mt-5 inline-flex min-h-11 items-center justify-center rounded-full border px-5 text-sm font-semibold"
+                  >
+                    Ver o painel do dono →
+                  </a>
+                  <span className="text-creme/55 mt-1 text-xs">Pedidos, vendas, mesas abertas — pode clicar, nada é salvo</span>
                 </div>
-              </a>
+              </div>
             </Reveal>
           ))}
         </div>

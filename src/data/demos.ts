@@ -6,6 +6,8 @@ export interface Demo {
   descricao: string
   link: string
   dica: string
+  /** Painel do dono em modo demonstração (sem login, nada é salvo). */
+  painel: string
 }
 
 /** Lojas de DEMONSTRAÇÃO do MeuCardápioGo (cardápio de exemplo) — rodando no
@@ -20,6 +22,7 @@ export const DEMOS: Demo[] = [
       'QR Code na mesa, pedido direto pra cozinha, chamar garçom, comandas separadas e prato em 3D. Sem delivery, sem WhatsApp.',
     link: 'https://skin-o-hamburgueria-resenha-bar.vercel.app/?mesa=7',
     dica: 'Abre como se você estivesse na mesa 7',
+    painel: 'https://skin-o-hamburgueria-resenha-bar.vercel.app/demo',
   },
   {
     nome: 'Brasa & Cia',
@@ -30,5 +33,6 @@ export const DEMOS: Demo[] = [
       'Cardápio com fotos, pedido direto no WhatsApp, Pix do próprio dono, fidelidade automática e lanche girando em 360°.',
     link: 'https://skin-o-hamburgueria-brasa-e-cia.vercel.app/',
     dica: 'Faça um pedido de teste',
+    painel: 'https://skin-o-hamburgueria-brasa-e-cia.vercel.app/demo',
   },
 ]
