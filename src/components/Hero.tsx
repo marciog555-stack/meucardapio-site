@@ -2,9 +2,17 @@ import { useEffect, useRef } from 'react'
 import { gsap, reduzMovimento } from '../lib/gsap'
 import { PRECO_MENSAL, PRECO_PRIMEIRO_MES } from '../data/planos'
 import { formatarPreco } from '../lib/formato'
+import {
+  HERO_EYEBROW,
+  HERO_TITULO_LINHAS,
+  HERO_SUBTITULO,
+  HERO_CTA_TEXTO,
+  HERO_WHATSAPP_NUMERO,
+  HERO_WHATSAPP_MENSAGEM,
+} from '../data/heroTexto.mjs'
 
-const WHATSAPP = '5562995471262'
-const MENSAGEM = encodeURIComponent('Oi! Vi o MeuCardápioGo e quero um site assim pro meu restaurante.')
+const WHATSAPP = HERO_WHATSAPP_NUMERO
+const MENSAGEM = encodeURIComponent(HERO_WHATSAPP_MENSAGEM)
 
 export function Hero() {
   const secaoRef = useRef<HTMLElement>(null)
@@ -43,21 +51,24 @@ export function Hero() {
           data-hero-eyebrow
           className="text-creme/70 text-xs font-semibold tracking-[0.35em] uppercase sm:text-sm"
         >
-          Cardápio digital pra restaurante, delivery e bar
+          {HERO_EYEBROW}
         </p>
         <h1
           data-hero-titulo
           className="font-display text-creme mt-4 uppercase"
           style={{ fontSize: 'clamp(2.5rem, 8.5vw, 6rem)', lineHeight: 0.94 }}
         >
-          <span className="block">Seu cardápio.</span>
-          <span className="block">Sua marca.</span>
-          <span className="text-burger block">Zero comissão.</span>
+          {HERO_TITULO_LINHAS.map((linha, i) => (
+            <span
+              key={linha}
+              className={i === HERO_TITULO_LINHAS.length - 1 ? 'text-burger block' : 'block'}
+            >
+              {linha}
+            </span>
+          ))}
         </h1>
         <p data-hero-sub className="text-creme/80 mt-6 max-w-lg text-base sm:text-lg">
-          Um site profissional só seu: pedido direto no seu WhatsApp ou na mesa,
-          pelo QR Code — sem pagar comissão por pedido pro aplicativo. E agora
-          com o prato em 3D na mesa do cliente.
+          {HERO_SUBTITULO}
         </p>
         <div data-hero-cta>
           <a
@@ -67,7 +78,7 @@ export function Hero() {
             className="bg-burger text-creme mt-8 inline-flex min-h-14 items-center gap-3 rounded-full px-8 text-base font-bold tracking-wide uppercase transition-transform active:scale-95"
             data-magnetico
           >
-            Quero meu site
+            {HERO_CTA_TEXTO}
           </a>
           <p className="text-creme/65 mt-3 text-sm">
             {formatarPreco(PRECO_PRIMEIRO_MES)} no 1º mês, {formatarPreco(PRECO_MENSAL)}/mês depois. Sem contrato, sem
