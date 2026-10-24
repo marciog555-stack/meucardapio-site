@@ -37,8 +37,16 @@ const PASSOS: Passo[] = [
   },
 ]
 
-const TELAS_DE_ROLAGEM = 2.8
+/** Quanto a pessoa rola (em alturas de tela) pra animação ir do começo ao
+ * fim. No celular é mais curto: lá cada tela é uma "passada" de dedo. */
+const telasDeRolagem = () => (window.innerWidth < 768 ? 1.5 : 2)
 const ENTRADA = 0.045
+
+/** Celular ou aparelho com pouco processador/memória. */
+function aparelhoLeve() {
+  const nav = navigator as Navigator & { deviceMemory?: number }
+  return window.innerWidth < 768 || (nav.hardwareConcurrency ?? 8) <= 4 || (nav.deviceMemory ?? 8) <= 4
+}
 
 function opacidadePasso(p: number, passo: Passo) {
   const entra = Math.min(1, (p - passo.de) / ENTRADA + (passo.de === 0 ? 1 : 0))
@@ -86,7 +94,7 @@ export function CenaMesa3D() {
           observer.disconnect()
         }
       },
-      { rootMargin: '800px 0px' },
+      { rootMargin: '1600px 0px' },
     )
     observer.observe(el)
     return () => observer.disconnect()
@@ -125,8 +133,9 @@ export function CenaMesa3D() {
           cena = criarCena({
             canvas,
             telaCelular: '/img/demo-resenha.webp',
-            modeloPrato: '/3d/frango-a-passarinho.glb',
+            modeloPrato: '/3d/frango-leve.glb',
             deslocamentoX: () => (largo() ? 0.19 : 0),
+            leve: aparelhoLeve(),
             aoFalhar: () => !cancelado && setModo('sem3d'),
           })
         } catch {
@@ -150,8 +159,10 @@ export function CenaMesa3D() {
         gatilho = ScrollTrigger.create({
           trigger: palco,
           start: 'top top',
-          end: () => `+=${window.innerHeight * TELAS_DE_ROLAGEM}`,
+          end: () => `+=${window.innerHeight * telasDeRolagem()}`,
           pin: true,
+          // Evita o "pulo" quando o dedo rola rápido e a seção prende
+          anticipatePin: 1,
           scrub: true,
           onUpdate: (self) => {
             c.definirProgresso(self.progress)
@@ -213,7 +224,7 @@ export function CenaMesa3D() {
           <div className="lg:max-w-md">{titulo}</div>
 
           <div className="lg:mt-12 lg:max-w-md">
-            <ol className="relative min-h-48 sm:min-h-44">
+            <ol className="relative min-h-40 sm:min-h-44">
               {PASSOS.map((p, i) => (
                 <li
                   key={p.titulo}
@@ -226,8 +237,8 @@ export function CenaMesa3D() {
                   <p className="text-macarrao text-sm font-semibold tabular-nums">
                     {i + 1} de {PASSOS.length}
                   </p>
-                  <h3 className="text-creme mt-1 text-2xl font-bold sm:text-3xl">{p.titulo}</h3>
-                  <p className="text-creme/80 mt-2 max-w-md text-base">{p.texto}</p>
+                  <h3 className="text-creme mt-1 text-xl font-bold sm:text-3xl">{p.titulo}</h3>
+                  <p className="text-creme/80 mt-2 max-w-md text-sm sm:text-base">{p.texto}</p>
                 </li>
               ))}
             </ol>
