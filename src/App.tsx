@@ -7,6 +7,7 @@ import { Hero } from './components/Hero'
 import { Problema } from './components/Problema'
 import { Novidade360 } from './components/Novidade360'
 import { Salao } from './components/Salao'
+import { CenaMesa3D } from './components/CenaMesa3D'
 import { Demos } from './components/Demos'
 import { Depoimentos } from './components/Depoimentos'
 import { ComoFunciona } from './components/ComoFunciona'
@@ -33,6 +34,7 @@ function App() {
       <main>
         <Hero />
         <Problema />
+        <CenaMesa3D />
         <Novidade360 />
         <Salao />
         <Demos />
