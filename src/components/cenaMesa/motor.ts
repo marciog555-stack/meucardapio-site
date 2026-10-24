@@ -2,6 +2,7 @@ import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js'
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js'
+import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js'
 
 /**
  * Cena 3D da seção "Do celular pra mesa": o cardápio real da loja demo
@@ -94,6 +95,8 @@ export interface OpcoesCena {
   modeloPrato: string
   /** Desloca o enquadramento pra direita, deixando espaço pro texto. */
   deslocamentoX: () => number
+  /** Celular / aparelho fraco: sem sombra calculada e menos pixels. */
+  leve: boolean
   aoCarregar?: () => void
   aoFalhar?: () => void
 }
@@ -104,7 +107,9 @@ export function criarCena(op: OpcoesCena) {
   renderer.outputColorSpace = THREE.SRGBColorSpace
   renderer.toneMapping = THREE.ACESFilmicToneMapping
   renderer.toneMappingExposure = 1.05
-  renderer.shadowMap.enabled = true
+  // No modo leve, a sombra do prato vem só da "sombra de contato" (um
+  // círculo esfumado), que custa quase nada.
+  renderer.shadowMap.enabled = !op.leve
   renderer.shadowMap.type = THREE.PCFSoftShadowMap
 
   const cena = new THREE.Scene()
@@ -226,7 +231,7 @@ export function criarCena(op: OpcoesCena) {
   const prato = new THREE.Group()
   prato.visible = false
   cena.add(prato)
-  new GLTFLoader().load(
+  new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).load(
     op.modeloPrato,
     (gltf) => {
       gltf.scene.traverse((o) => {
@@ -349,7 +354,7 @@ export function criarCena(op: OpcoesCena) {
     largura = Math.max(1, l)
     altura = Math.max(1, a)
     const retrato = largura / altura < 0.9
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, retrato ? 1.5 : 1.75))
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, op.leve ? 1.25 : 1.75))
     renderer.setSize(largura, altura, false)
     camera.aspect = largura / altura
     camera.fov = retrato ? 42 : 34
@@ -364,7 +369,7 @@ export function criarCena(op: OpcoesCena) {
     const dt = Math.min(0.05, (agora - ultimo) / 1000)
     ultimo = agora
     relogio += dt
-    atual += (alvo - atual) * (1 - Math.exp(-dt * 7))
+    atual += (alvo - atual) * (1 - Math.exp(-dt * 10))
     aplicar(atual, relogio)
     renderer.render(cena, camera)
   }
