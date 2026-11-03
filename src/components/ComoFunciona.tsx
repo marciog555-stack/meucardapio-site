@@ -42,7 +42,7 @@ export function ComoFunciona() {
   }, [])
 
   return (
-    <section ref={secaoRef} className="px-6 py-24 sm:px-10 lg:px-20">
+    <section id="como-funciona" ref={secaoRef} className="px-6 py-24 sm:px-10 lg:px-20">
       <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:gap-20">
         <div className="lg:sticky lg:top-24 lg:self-start">
           <p className="text-creme/65 text-xs font-semibold tracking-[0.3em] uppercase">

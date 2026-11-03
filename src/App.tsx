@@ -5,6 +5,8 @@ import { useAtualizarScrollAposFontes } from './hooks/useAtualizarScrollAposFont
 import { Nav } from './components/Nav'
 import { Hero } from './components/Hero'
 import { Problema } from './components/Problema'
+import { FeitoPara } from './components/FeitoPara'
+import { Comparativo } from './components/Comparativo'
 import { Novidade360 } from './components/Novidade360'
 import { Salao } from './components/Salao'
 import { CenaMesa3D } from './components/CenaMesa3D'
@@ -13,6 +15,7 @@ import { Depoimentos } from './components/Depoimentos'
 import { ComoFunciona } from './components/ComoFunciona'
 import { Confianca } from './components/Confianca'
 import { Rodape } from './components/Rodape'
+import { BolhaWhatsapp } from './components/BolhaWhatsapp'
 
 // Carregado à parte pra não atrasar o primeiro parágrafo visível — não
 // depende de nada do resto da página, só monta o próprio canvas fixo.
@@ -34,6 +37,8 @@ function App() {
       <main>
         <Hero />
         <Problema />
+        <FeitoPara />
+        <Comparativo />
         <CenaMesa3D />
         <Novidade360 />
         <Salao />
@@ -43,6 +48,7 @@ function App() {
         <Confianca />
       </main>
       <Rodape />
+      <BolhaWhatsapp />
     </>
   )
 }
