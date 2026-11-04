@@ -1,0 +1,59 @@
+import { Reveal } from './Reveal'
+
+const ITENS = [
+  {
+    icone: '📱',
+    titulo: 'QR Code em cada mesa',
+    texto: 'O cliente aponta a câmera e o cardápio já abre na mesa certa. Ninguém digita nada.',
+  },
+  {
+    icone: '🍳',
+    titulo: 'Pedido direto pra cozinha',
+    texto: 'Cai no painel com o número da mesa, com aviso sonoro e impressão na impressora térmica.',
+  },
+  {
+    icone: '🔔',
+    titulo: 'Chamar garçom',
+    texto: 'Um toque no celular e o chamado aparece no painel, com a mesa que chamou.',
+  },
+  {
+    icone: '🧾',
+    titulo: 'Comandas separadas',
+    texto: 'Casal numa conta, amigo em outra — na mesma mesa. Cada um vê e paga o seu.',
+  },
+]
+
+export function AtendimentoMesa() {
+  return (
+    <section id="mesa" className="px-6 py-24 sm:px-10 lg:px-20">
+      <div className="mx-auto max-w-6xl">
+        <Reveal>
+          <p className="text-creme/65 text-xs font-semibold tracking-[0.3em] uppercase">
+            Bar, restaurante e petiscaria
+          </p>
+          <h2 className="font-display text-creme mt-3 max-w-3xl text-4xl uppercase sm:text-5xl">
+            Atende na mesa? O pedido sai do celular do cliente
+          </h2>
+          <p className="text-creme/75 mt-4 max-w-xl text-base sm:text-lg">
+            Pra quem atende no local, sem delivery: o site vira o cardápio do salão. Menos fila no
+            balcão, menos pedido anotado errado, garçom livre pra atender.
+          </p>
+        </Reveal>
+
+        <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {ITENS.map((item, i) => (
+            <Reveal key={item.titulo} as="li" delayMs={60 * i}>
+              <div className="border-creme/10 bg-carvao-claro h-full rounded-2xl border p-6">
+                <span className="text-2xl" aria-hidden="true">
+                  {item.icone}
+                </span>
+                <h3 className="font-display text-creme mt-3 text-xl uppercase">{item.titulo}</h3>
+                <p className="text-creme/75 mt-1 text-sm">{item.texto}</p>
+              </div>
+            </Reveal>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}

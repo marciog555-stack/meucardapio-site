@@ -19,7 +19,7 @@ export const DEMOS: Demo[] = [
     cor: '#D9A441',
     foto: '/img/demo-resenha.webp',
     descricao:
-      'QR Code na mesa, pedido direto pra cozinha, chamar garçom, comandas separadas e prato em 3D. Sem delivery, sem WhatsApp.',
+      'QR Code na mesa, pedido direto pra cozinha, chamar garçom e comandas separadas. Sem delivery, sem WhatsApp.',
     link: 'https://skin-o-hamburgueria-resenha-bar.vercel.app/?mesa=7',
     dica: 'Abre como se você estivesse na mesa 7',
     painel: 'https://skin-o-hamburgueria-resenha-bar.vercel.app/demo',

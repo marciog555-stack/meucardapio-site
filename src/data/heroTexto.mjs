@@ -11,7 +11,7 @@ export const HERO_TITULO_LINHAS = [
 ]
 
 export const HERO_SUBTITULO =
-  'Um site profissional só seu: pedido direto no seu WhatsApp ou na mesa, pelo QR Code — sem pagar comissão por pedido pro aplicativo. E agora com o prato em 3D na mesa do cliente.'
+  'Um site profissional só seu: pedido direto no seu WhatsApp ou na mesa, pelo QR Code — sem pagar comissão por pedido pro aplicativo.'
 
 export const HERO_CTA_TEXTO = 'Quero meu site'
 
