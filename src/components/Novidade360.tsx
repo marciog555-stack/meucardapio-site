@@ -3,27 +3,15 @@ import { formatarPreco } from '../lib/formato'
 import { Prato3D } from './Prato3D'
 import { Reveal } from './Reveal'
 
+/** Junta num grid só o que antes eram duas seções separadas (3D/AR e
+ * atendimento na mesa) — mesmo add-on, menos espaço na página. */
 const RECURSOS = [
-  {
-    titulo: 'Prato em 3D',
-    texto: 'O cliente gira a porção com o dedo, aproxima e vê cada detalhe — muito além de uma foto.',
-  },
-  {
-    titulo: '“Ver na mesa” (realidade aumentada)',
-    texto: 'Pela câmera do celular, o prato aparece em tamanho real em cima da mesa, antes de pedir.',
-  },
-  {
-    titulo: 'Giro 360° por vídeo',
-    texto: 'Pra drinks, copos e o que não dá pra escanear: um vídeo curto do prato girando já basta.',
-  },
-  {
-    titulo: 'QR Code por produto',
-    texto: 'Imprima no cardápio de papel ou no display da mesa: abre direto naquele prato em 3D.',
-  },
-  {
-    titulo: 'Quanto vende quem tem 3D',
-    texto: 'No painel: quantos abriram o 3D, quantos viram na mesa e as vendas de cada prato.',
-  },
+  { icone: '🔄', titulo: 'Prato em 3D', texto: 'Gira com o dedo, aproxima, vê cada detalhe — muito além de uma foto.' },
+  { icone: '📲', titulo: '"Ver na mesa" (AR)', texto: 'Pela câmera do celular, o prato aparece em tamanho real antes de pedir.' },
+  { icone: '📱', titulo: 'QR Code na mesa', texto: 'O cliente aponta a câmera e o pedido cai direto pra cozinha.' },
+  { icone: '🔔', titulo: 'Chamar garçom', texto: 'Um toque no celular e o chamado aparece no painel.' },
+  { icone: '🧾', titulo: 'Comandas separadas', texto: 'Casal numa conta, amigo em outra — cada um vê e paga o seu.' },
+  { icone: '📊', titulo: 'Métricas de venda', texto: 'Quantos abriram o 3D, viram na mesa e o quanto venderam.' },
 ]
 
 export function Novidade360() {
@@ -32,28 +20,32 @@ export function Novidade360() {
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-20">
         <Reveal>
           <p className="text-macarrao text-xs font-semibold tracking-[0.3em] uppercase">
-            Novo · MeuCardápio 3D
+            Add-on · MeuCardápio 3D
           </p>
           <h2 className="font-display text-creme mt-3 text-4xl uppercase sm:text-5xl">
-            O prato na mesa antes do pedido
+            Prato em 3D e pedido na mesa
           </h2>
           <p className="text-creme/75 mt-4 max-w-xl text-base sm:text-lg">
-            O cliente vê exatamente o que vai chegar. Esse prato aqui é de verdade: abra no celular e toque em
-            “Ver na sua mesa”.
+            Esse prato aqui é de verdade: abra no celular e toque em "Ver na sua mesa". Pra quem
+            atende no local, vira também o cardápio da mesa — sem papel, sem fila no balcão.
           </p>
-          <ul className="mt-8 flex flex-col gap-5">
+
+          <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
             {RECURSOS.map((r) => (
-              <li key={r.titulo} className="border-creme/10 border-l-2 pl-4">
-                <h3 className="text-creme font-semibold">{r.titulo}</h3>
-                <p className="text-creme/75 mt-0.5 text-sm">{r.texto}</p>
+              <li key={r.titulo} className="border-creme/10 bg-carvao-claro rounded-xl border p-4">
+                <span className="text-lg" aria-hidden="true">
+                  {r.icone}
+                </span>
+                <h3 className="text-creme mt-1.5 text-sm font-semibold">{r.titulo}</h3>
+                <p className="text-creme/70 mt-0.5 text-xs">{r.texto}</p>
               </li>
             ))}
           </ul>
+
           <p className="text-creme/65 mt-8 text-sm">
-            Add-on opcional
+            Opcional
             {PRECO_360_MENSAL !== null ? ` · +${formatarPreco(PRECO_360_MENSAL)}/mês` : ' · valor sob consulta'}, com
-            pratos em 3D a partir de {formatarPreco(PRECO_3D_A_PARTIR_DE)}. Inclui também o atendimento na mesa
-            (abaixo).
+            pratos em 3D a partir de {formatarPreco(PRECO_3D_A_PARTIR_DE)}.
           </p>
         </Reveal>
 

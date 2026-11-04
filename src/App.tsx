@@ -8,7 +8,6 @@ import { Problema } from './components/Problema'
 import { FeitoPara } from './components/FeitoPara'
 import { Comparativo } from './components/Comparativo'
 import { Novidade360 } from './components/Novidade360'
-import { Salao } from './components/Salao'
 import { CenaMesa3D } from './components/CenaMesa3D'
 import { Demos } from './components/Demos'
 import { Depoimentos } from './components/Depoimentos'
@@ -37,12 +36,11 @@ function App() {
       <main>
         <Hero />
         <Problema />
-        <FeitoPara />
         <Comparativo />
+        <Demos />
         <CenaMesa3D />
         <Novidade360 />
-        <Salao />
-        <Demos />
+        <FeitoPara />
         <Depoimentos />
         <ComoFunciona />
         <Confianca />
