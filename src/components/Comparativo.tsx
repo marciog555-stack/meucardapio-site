@@ -11,18 +11,16 @@ const LINHAS = [
   { icone: '🔔', titulo: 'Avisar o cliente', sem: 'Ninguém avisa, ele fica no escuro', com: 'Mensagem pronta de "saiu pra entrega"' },
 ]
 
-/** Slider "antes/depois" arrastável — duas colunas lado a lado (não uma
- * imagem só), cada uma com a própria lista completa; arrastar só muda a
- * largura de cada coluna (overflow escondido), em vez de recortar texto por
- * cima de texto — com clip-path por cima de linhas de texto, o valor que
- * fica coladinho na borda direita quase nunca aparece, porque o recorte
- * cresce da esquerda e demora a chegar lá. Duas colunas de verdade não tem
- * esse problema: cada lado sempre mostra o próprio conteúdo, só mais
- * apertado ou mais largo. */
+/** No celular, arrastar uma faixa estreita competia com o dedo tentando só
+ * rolar a página (o toque ficava "preso" ali) e o texto cortava de lado —
+ * então no mobile isso vira um toggle simples de 2 botões, sem gesto
+ * nenhum. Do tablet pra cima, onde tem espaço de sobra e normalmente é
+ * mouse, continua o slider arrastável lado a lado. */
 export function Comparativo() {
   const containerRef = useRef<HTMLDivElement>(null)
   const arrastando = useRef(false)
   const [pos, setPos] = useState(50)
+  const [ladoMobile, setLadoMobile] = useState<'sem' | 'com'>('com')
 
   const atualizarPos = useCallback((clientX: number) => {
     const el = containerRef.current
@@ -53,17 +51,65 @@ export function Comparativo() {
             Antes e depois
           </p>
           <h2 className="font-display text-creme mt-3 text-center text-4xl uppercase sm:text-5xl">
-            Arraste e compare
+            Compare
           </h2>
         </Reveal>
 
-        <Reveal delayMs={100}>
+        {/* Celular: toggle de 2 botões, uma coluna só por vez. */}
+        <Reveal delayMs={100} className="sm:hidden">
+          <div className="border-creme/10 mt-8 flex gap-1 rounded-full border p-1">
+            <button
+              type="button"
+              onClick={() => setLadoMobile('sem')}
+              className={`min-h-10 flex-1 rounded-full text-sm font-bold uppercase transition-colors ${
+                ladoMobile === 'sem' ? 'bg-burger text-creme' : 'text-burger'
+              }`}
+            >
+              Sem
+            </button>
+            <button
+              type="button"
+              onClick={() => setLadoMobile('com')}
+              className={`min-h-10 flex-1 rounded-full text-sm font-bold uppercase transition-colors ${
+                ladoMobile === 'com' ? 'bg-marmita text-carvao' : 'text-marmita'
+              }`}
+            >
+              Com MeuCardápioGo
+            </button>
+          </div>
+          <div
+            className="border-creme/10 mt-3 flex flex-col overflow-hidden rounded-2xl border"
+            style={{
+              backgroundColor: `color-mix(in srgb, var(--color-${ladoMobile === 'sem' ? 'burger' : 'marmita'}) ${ladoMobile === 'sem' ? 10 : 12}%, transparent)`,
+            }}
+          >
+            {LINHAS.map((linha) => (
+              <div
+                key={linha.titulo}
+                className="border-creme/10 flex flex-col gap-0.5 border-b px-5 py-4 last:border-b-0"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="text-lg" aria-hidden="true">
+                    {linha.icone}
+                  </span>
+                  <span className="text-creme text-sm font-semibold">{linha.titulo}</span>
+                </div>
+                <span className={`text-sm font-semibold ${ladoMobile === 'sem' ? 'text-burger' : 'text-marmita'}`}>
+                  {ladoMobile === 'sem' ? linha.sem : linha.com}
+                </span>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+
+        {/* Tablet/desktop: slider arrastável lado a lado. */}
+        <Reveal delayMs={100} className="hidden sm:block">
           <div
             ref={containerRef}
             onPointerMove={aoMover}
             onPointerUp={aoSoltar}
             onPointerLeave={aoSoltar}
-            className="border-creme/10 relative mt-10 flex touch-none overflow-hidden rounded-2xl border select-none"
+            className="border-creme/10 relative mt-10 flex overflow-hidden rounded-2xl border select-none"
           >
             <div
               className="flex min-w-0 shrink-0 flex-col overflow-hidden"
@@ -120,6 +166,7 @@ export function Comparativo() {
                 aria-valuemin={10}
                 aria-valuemax={90}
                 tabIndex={0}
+                style={{ touchAction: 'none' }}
                 className="bg-creme text-carvao absolute top-1/2 left-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize items-center justify-center rounded-full text-base font-bold shadow-lg shadow-black/40"
               >
                 ⇆
